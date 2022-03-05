@@ -49,7 +49,7 @@ def main():
         print('------')
 
     bot.add_cog(VoiceBot(bot))
-    bot.run('OTQ5MjY4MTQwMjY3ODA2NzQz.YiH42Q.hw8OmmDWZOTMASgCN0-sl5R7QH0')
+    bot.run('your Token here')
 
 
 if __name__ == '__main__':

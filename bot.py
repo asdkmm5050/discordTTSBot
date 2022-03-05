@@ -44,8 +44,8 @@ class VoiceBot(commands.Cog):
     @cog_ext.cog_slash(name='leave')
     async def leave(self, ctx):
         """leaves a voice channel"""
-        await ctx.send("債眷。", delete_after=2.)
 
+        await ctx.send("債眷。", delete_after=2.)
         return await ctx.voice_client.disconnect()
 
     @cog_ext.cog_slash(name='talk')

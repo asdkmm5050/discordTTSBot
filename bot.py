@@ -1,12 +1,11 @@
-import threading
-import time
-
 from discord.ext import commands
 from discord_slash import SlashCommand, cog_ext
-
 from Audio import Audio
 import discord
 import queue
+import json
+import threading
+import time
 
 
 # ctx為context的縮寫
@@ -73,7 +72,9 @@ def main():
 
         vb = VoiceBot(bot)
         bot.add_cog(vb)
-        bot.run('OTQ5MjY4MTQwMjY3ODA2NzQz.YiH42Q.6bRQssOqSZ5ilANPxGQLFBAZDew')
+        with open('config.json', 'r'):
+            token = json.load()
+        bot.run(token['token'])
 
     except RuntimeError:
         main()

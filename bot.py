@@ -11,13 +11,13 @@ class VoiceBot(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
+    async def join(self, ctx):
         """Joins a voice channel"""
 
         if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
+            return await ctx.voice_client.move_to(ctx.author.voice.channel)
 
-        await channel.connect()
+        await ctx.author.voice.channel.connect()
 
     @commands.command()
     async def leave(self, ctx):
@@ -49,7 +49,7 @@ def main():
         print('------')
 
     bot.add_cog(VoiceBot(bot))
-    bot.run('your Token here')
+    bot.run('OTQ5MjY4MTQwMjY3ODA2NzQz.YiH42Q.6A22B91XORERY0ICefz_nhampRY')
 
 
 if __name__ == '__main__':

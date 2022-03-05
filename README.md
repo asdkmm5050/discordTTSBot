@@ -8,6 +8,8 @@
 
 - Replace the token with your own token
 - run python bot.py
+
+### Commands
 - /join
 - /play "message"
 - /leave 

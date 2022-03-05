@@ -72,8 +72,8 @@ def main():
 
         vb = VoiceBot(bot)
         bot.add_cog(vb)
-        with open('config.json', 'r'):
-            token = json.load()
+        with open('config.json', 'r') as f:
+            token = json.load(f)
         bot.run(token['token'])
 
     except RuntimeError:

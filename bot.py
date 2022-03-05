@@ -1,8 +1,12 @@
+import threading
+import time
+
 from discord.ext import commands
 from discord_slash import SlashCommand, cog_ext
 
 from Audio import Audio
 import discord
+import queue
 
 
 # ctx為context的縮寫
@@ -10,6 +14,21 @@ import discord
 class VoiceBot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.q = queue.Queue()
+        self.ctx = None
+        self.threadTalking = threading.Thread(target=self.worker)
+
+    def worker(self):
+        while True:
+            if self.ctx is not None:
+                if not self.ctx.voice_client.is_playing():
+                    task = self.q.get()
+                    Audio(task)
+                    self.ctx.voice_client.play(
+                        discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source='output.mp3'))
+                    while self.ctx.voice_client.is_playing():
+                        time.sleep(1)
+                    self.q.task_done()
 
     @cog_ext.cog_slash(name='join')
     async def join(self, ctx):
@@ -19,42 +38,45 @@ class VoiceBot(commands.Cog):
             return await ctx.voice_client.move_to(ctx.author.voice.channel)
 
         await ctx.author.voice.channel.connect()
-        return await ctx.send("哈哈，4我啦。", delete_after=1.)
+        self.ctx = ctx
+        self.threadTalking.start()
+        return await ctx.send("哈哈，4我啦。", delete_after=2.)
 
     @cog_ext.cog_slash(name='leave')
     async def leave(self, ctx):
         """leaves a voice channel"""
+        await ctx.send("債眷。", delete_after=2.)
 
-        await ctx.voice_client.disconnect()
-        return await ctx.send("債眷。", delete_after=1.)
+        return await ctx.voice_client.disconnect()
 
     @cog_ext.cog_slash(name='talk')
-    async def talk(self, ctx, arg):
-        """plays the audio from ctx"""
+    async def talk(self, ctx, message):
+        """plays the audio from message"""
 
         if ctx.voice_client is None:
-            return await ctx.send('沒進頻道歐')
-        if arg is None:
-            return await ctx.send('我只會讀稿不會讀心歐')
-        if ctx.voice_client.is_playing():
-            return await ctx.send('我只有一張嘴吧，你們要自立自強阿')
-        Audio(arg)
-        ctx.voice_client.play(discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source='output.mp3'))
-        return await ctx.send('已送出', delete_after=1.)
+            return await ctx.send('沒進頻道歐', delete_after=2.)
+
+        self.q.put(ctx.author.display_name + '說' + message)
+        return await ctx.send('已加入列隊，你們要自立自強阿', delete_after=2.)
 
 
 def main():
-    bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"),
-                       description='py')
-    slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
+    try:
+        bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"),
+                           description='py')
+        slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
-    @bot.event
-    async def on_ready():
-        print('Logged in as {0} ({0.id})'.format(bot.user))
-        print('------')
+        @bot.event
+        async def on_ready():
+            print('Logged in as {0} ({0.id})'.format(bot.user))
+            print('------')
 
-    bot.add_cog(VoiceBot(bot))
-    bot.run('your token')
+        vb = VoiceBot(bot)
+        bot.add_cog(vb)
+        bot.run('OTQ5MjY4MTQwMjY3ODA2NzQz.YiH42Q.6bRQssOqSZ5ilANPxGQLFBAZDew')
+
+    except RuntimeError:
+        main()
 
 
 if __name__ == '__main__':

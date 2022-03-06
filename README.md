@@ -1,7 +1,8 @@
 # discordTTSBot
 
 ### NEED
-- discord.py
+- discord
+- discord_slash
 - fffmpeg(at C:\fffmpeg\bin\fffmpeg.exe)
 
 ### How to use

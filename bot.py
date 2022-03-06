@@ -2,10 +2,7 @@ from discord.ext import commands
 from discord_slash import SlashCommand, cog_ext
 from Audio import Audio
 import discord
-import queue
 import json
-import threading
-import time
 import asyncio
 
 

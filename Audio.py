@@ -11,4 +11,4 @@ class Audio:
         self.saveAudio(channel)
 
     def saveAudio(self, channel):
-        self.output.save(f'{channel}.mp3')
+        self.output.save(f'./audio/{channel}.mp3')

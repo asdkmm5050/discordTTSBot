@@ -15,29 +15,31 @@ class VoiceBot(commands.Cog):
         self.ctx = {}
 
     async def playAudio(self, channel):
-        for message in self.messageList[self.ctx[channel].author.voice.channel.name]:
-            print(message, 'generating...')
-            Audio(message)
-            print(message, 'start talking...')
+        for message in self.messageList[channel]:
+            print(message, 'task generating...')
+            Audio(message, channel)
+            print(message, 'task start talking...')
             self.ctx[channel].voice_client.play(
-                discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source=f'{channel}.mp3'))
+                discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source=f'./audio/{channel}.mp3'))
 
             while self.ctx[channel].voice_client.is_playing():
                 await asyncio.sleep(1)
 
-            print(message, 'finished')
+            print(message, 'task finished')
 
-        self.messageList[self.ctx[channel].author.voice.channel.name] = []
+        self.messageList[channel] = []
 
     @cog_ext.cog_slash(name='join')
     async def join(self, ctx):
         """Joins a voice channel"""
 
         if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(ctx.author.voice.channel)
+            await ctx.voice_client.disconnect()
 
-        self.ctx[ctx.author.voice.channel.name] = ctx
-        self.messageList[ctx.author.voice.channel.name] = []
+        channel = str(ctx.author.voice.channel.id)
+        self.ctx[channel] = ctx
+        self.messageList[channel] = []
+        print('connected to:', channel)
         await ctx.author.voice.channel.connect()
         return await ctx.send("哈哈，4我啦。", delete_after=2.)
 
@@ -59,13 +61,16 @@ class VoiceBot(commands.Cog):
             return await ctx.send('沒進頻道歐', delete_after=2.)
 
         print(ctx.author.display_name + '說' + message, 'add to queue')
+        channel = str(ctx.author.voice.channel.id)
 
-        if len(self.messageList[ctx.author.voice.channel.name]) != 0:
-            self.messageList[ctx.author.voice.channel.name].append(ctx.author.display_name + '說' + message)
+        if len(self.messageList[channel]) != 0:
+            self.messageList[channel].append(ctx.author.display_name + '說' + message)
+            print(1)
 
         else:
-            self.messageList[ctx.author.voice.channel.name].append(ctx.author.display_name + '說' + message)
-            asyncio.ensure_future(self.playAudio(ctx.author.voice.channel.name))
+            self.messageList[channel].append(ctx.author.display_name + '說' + message)
+            asyncio.ensure_future(self.playAudio(channel))
+            print(2)
 
         return await ctx.send(ctx.author.display_name + '說' + message + ' 已加入列隊，你們要自立自強阿', delete_after=2.)
 

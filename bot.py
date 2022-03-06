@@ -1,6 +1,6 @@
 from discord.ext import commands
 from discord_slash import SlashCommand, cog_ext
-from Audio import Audio
+from audio import Audio
 import discord
 import json
 import asyncio

@@ -16,16 +16,16 @@ class VoiceBot(commands.Cog):
 
     async def playAudio(self, channel):
         for message in self.messageList[self.ctx[channel].author.voice.channel.name]:
-            print(message, 'task generating...')
+            print(message, 'generating...')
             Audio(message)
-            print(message, 'task start talking...')
+            print(message, 'start talking...')
             self.ctx[channel].voice_client.play(
-                discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source='output.mp3'))
+                discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source=f'{channel}.mp3'))
 
             while self.ctx[channel].voice_client.is_playing():
                 await asyncio.sleep(1)
 
-            print(message, 'task finished')
+            print(message, 'finished')
 
         self.messageList[self.ctx[channel].author.voice.channel.name] = []
 

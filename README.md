@@ -6,8 +6,13 @@
 
 ### How to use
 
-- Replace the token with your own token
-- run python bot.py
+- add a config.json file in ./
+  ```
+  {
+  "token":"your token"
+  }
+  ```
+- run python ./bot.py
 
 ### Commands
 - /join

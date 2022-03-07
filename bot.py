@@ -70,6 +70,9 @@ class VoiceBot(commands.Cog):
     async def join(self, ctx):
         """Joins a voice channel"""
 
+        if ctx.author.voice is None:
+            return await ctx.send("你不在頻道裡歐", delete_after=2.)
+
         if ctx.voice_client is not None:
             await ctx.voice_client.disconnect()
 

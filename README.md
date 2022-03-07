@@ -1,6 +1,6 @@
 # discordTTSBot
 
-### NEED
+### Need
 - discord
 - discord_slash
 - fffmpeg(at C:\fffmpeg\bin\fffmpeg.exe)

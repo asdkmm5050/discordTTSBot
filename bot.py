@@ -99,7 +99,10 @@ class VoiceBot(commands.Cog):
         """plays the audio from message"""
 
         if ctx.voice_client is None:
-            return await ctx.send('沒進頻道歐', delete_after=2.)
+            return await ctx.send('我沒進頻道歐', delete_after=2.)
+
+        if ctx.author.voice is None:
+            return await ctx.send("你不在頻道裡歐", delete_after=2.)
 
         fullMessage = message + ', from ' + makeNicknameSorter(ctx.author.display_name)
         print(fullMessage, 'add to queue')
@@ -120,6 +123,12 @@ class VoiceBot(commands.Cog):
         """
         Support language : en (English), fr (French), zh (Mandarin), pt (Portuguese), es (Spanish)
         """
+
+        if ctx.voice_client is None:
+            return await ctx.send('我沒進頻道歐', delete_after=2.)
+
+        if ctx.author.voice is None:
+            return await ctx.send("你不在頻道裡歐", delete_after=2.)
 
         channel = str(ctx.author.voice.channel.id)
         self.languageList[channel] = language

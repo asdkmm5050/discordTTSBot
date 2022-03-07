@@ -19,7 +19,7 @@
 - /join
 - /talk "message"
 - /leave 
-- /language "language"
+- /language "lang-code"
 
 ### Bot link
 - [讀稿機](https://discord.com/api/oauth2/authorize?client_id=949268140267806743&permissions=2150639616&scope=bot%20applications.commands)

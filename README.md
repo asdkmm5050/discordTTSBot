@@ -27,8 +27,8 @@
 
 ### Bot link
 - [讀稿機](https://discord.com/api/oauth2/authorize?client_id=949268140267806743&permissions=2150639616&scope=bot%20applications.commands)
-- **我看的到透過機器人傳送的所有訊息。**
-- **I can see all the messages sent by the bot.**
+- **我看的到透過這個機器人傳送的所有訊息。**
+- **I can see all the messages sent by this bot.**
 - 架在我自己的電腦上，隨時會被關掉。
 - It's on my own computer and could be turned off at any time.
   

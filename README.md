@@ -13,7 +13,7 @@
 
 ### How to use
 
-- add a config.json file in ./
+- add a config.json file under ./
   ```
   {
   "token":"your token"

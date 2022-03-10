@@ -13,13 +13,13 @@
 
 ### 怎麼用
 
-- add a config.json file in ./
+- 新增一個 config.json 檔案在 ./
   ```
   {
   "token":"your token"
   }
   ```
-- run python ./bot.py
+- 執行 python ./bot.py
 
 ### 命令
 - `/join`

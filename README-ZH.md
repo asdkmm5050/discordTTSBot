@@ -6,7 +6,7 @@
 ### 這是什麼?
 - 這是一個 Discord TTS 機器人，可以加入語音頻道並幫你說話。
 
-### Need
+### 需要
 - discord
 - discord_slash
 - ffmpeg(like C:\fffmpeg\bin\fffmpeg.exe)

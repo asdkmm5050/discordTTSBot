@@ -1,7 +1,7 @@
 # discordTTSBot
 
 ### Other language
-- [中文](readme-zh.md)
+- [中文](README-ZH.md)
 
 ### What is this?
 - This is a Discord TTS bot, let it join a voice channel and  speak for you.

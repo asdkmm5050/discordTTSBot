@@ -1,13 +1,13 @@
 # discordTTSBot
 
 ### What is this?
-- This is a discord TTS bot that you can let it join a voice channel and  speak for you.
-- 這是一個 discord TTS 機器人，你可以讓它加入語音頻道並幫你說話。
+- This is a discord TTS bot, let it join a voice channel and  speak for you.
+- 這是一個 discord TTS 機器人，可以加入語音頻道並幫你說話。
 
 ### Need
 - discord
 - discord_slash
-- fffmpeg(at C:\fffmpeg\bin\fffmpeg.exe)
+- fffmpeg(like C:\fffmpeg\bin\fffmpeg.exe)
 
 ### How to use
 

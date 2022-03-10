@@ -1,7 +1,7 @@
 # discordTTSBot
 
 ### 其他語言
-- [English](readme.md)
+- [English](README.md)
 
 ### 這是什麼?
 - 這是一個 Discord TTS 機器人，可以加入語音頻道並幫你說話。

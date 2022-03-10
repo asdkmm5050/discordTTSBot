@@ -7,7 +7,7 @@
 ### Need
 - discord
 - discord_slash
-- fffmpeg(like C:\fffmpeg\bin\fffmpeg.exe)
+- ffmpeg(like C:\fffmpeg\bin\fffmpeg.exe)
 
 ### How to use
 

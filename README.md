@@ -30,4 +30,4 @@
 ### Bot link
 - [Bot](https://discord.com/api/oauth2/authorize?client_id=949268140267806743&permissions=2150639616&scope=bot%20applications.commands)
 - **I can see all the messages sent by this bot.**
-- It's on my own computer and could be turned off at any time.
+- The server is hosted on my own computer, may turn off anytime.

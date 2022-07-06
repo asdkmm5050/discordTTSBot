@@ -8,9 +8,9 @@ COPY ./audio.py /app/
 COPY ./bot.py /app/
 COPY ./config.json /app/
 WORKDIR /app
-RUN pip install discord
+
+RUN pip install discord==1.7.3
 RUN pip install discord-py-slash-command==3.0.3
-RUN pip install gTTs
-RUN pip install ffmpeg
-RUN pip install PyNaCl
+RUN pip install gTTs==2.2.3
+RUN pip install PyNaCl1.4.0
 CMD python ./bot.py

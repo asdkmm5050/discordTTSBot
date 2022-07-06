@@ -7,9 +7,7 @@
 - 這是一個 Discord TTS 機器人，可以加入語音頻道並幫你說話。
 
 ### 需要
-- discord
-- discord_slash
-- ffmpeg(like C:\fffmpeg\bin\fffmpeg.exe)
+- docker
 
 ### 怎麼用
 
@@ -19,7 +17,9 @@
   "token":"your token"
   }
   ```
-- 執行 python ./bot.py
+- 執行
+  - ```docker build -t "your image name" .```
+  - ```docker run "your image name"```
 
 ### 命令
 - `/join`

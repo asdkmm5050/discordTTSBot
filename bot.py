@@ -5,7 +5,7 @@ import discord
 import json
 import asyncio
 import re
-
+import os
 
 # ctx為context的縮寫
 
@@ -56,7 +56,7 @@ class VoiceBot(commands.Cog):
             Audio(message, channel, self.languageList[channel])
             print(message, 'task start talking...')
             self.ctx[channel].voice_client.play(
-                discord.FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source=f'./audio/{channel}.mp3'))
+                discord.FFmpegPCMAudio(source=f'./audio/{channel}.mp3'))
 
             while self.ctx[channel].voice_client.is_playing():
                 await asyncio.sleep(0.1)
@@ -161,4 +161,5 @@ def main():
 
 
 if __name__ == '__main__':
+    os.mkdir("audio")
     main()

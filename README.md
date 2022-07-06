@@ -7,19 +7,18 @@
 - This is a Discord TTS bot, let it join a voice channel and  speak for you.
 
 ### Need
-- discord
-- discord_slash
-- ffmpeg(like C:\fffmpeg\bin\fffmpeg.exe)
+- docker
 
 ### How to use
-
-- add a config.json file under ./
+- add a config.json file in ./
   ```
   {
   "token":"your token"
   }
   ```
-- run python ./bot.py
+- run 
+  - ```docker build -t "your image name" .```
+  - ```docker run "your image name"```
 
 ### Commands
 - `/join`
